@@ -1,8 +1,17 @@
-A_list = list()
-mark_list = [[0] * 3 for _ in range(3)] 
+def check_bingo(mark_list):
+    # Check rows and columns
+    for i in range(3):
+        if all(mark_list[i][j] == 1 for j in range(3)) or all(mark_list[j][i] == 1 for j in range(3)):
+            return True
 
-for i in range(3):
-    A_list.append(list(map(int, input().split())))
+    # Check diagonals
+    if all(mark_list[i][i] == 1 for i in range(3)) or all(mark_list[i][2 - i] == 1 for i in range(3)):
+        return True
+
+    return False
+
+A_list = [list(map(int, input().split())) for _ in range(3)]
+mark_list = [[0] * 3 for _ in range(3)]
 
 N = int(input())
 for _ in range(N):
@@ -12,18 +21,7 @@ for _ in range(N):
             if A_list[i][j] == b:
                 mark_list[i][j] = 1
 
-result = False
-for i in range(3):
-    if mark_list[i][0] == mark_list[i][1] == mark_list[i][2] == 1:
-        result = True
-    if mark_list[0][i] == mark_list[1][i] == mark_list[2][i] == 1:
-        result = True
-if mark_list[0][0] == mark_list[1][1] == mark_list[2][2] == 1:
-    result = True
-if mark_list[0][2] == mark_list[1][1] == mark_list[2][0] == 1:
-    result = True
-
-if result:
+if check_bingo(mark_list):
     print("Yes")
 else:
     print("No")
