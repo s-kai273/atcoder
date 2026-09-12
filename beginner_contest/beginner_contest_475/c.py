@@ -12,7 +12,6 @@ answer = 0
 while left <= s and right <= n:
     city_count = right - left + 1
     dist = min(2 * left_dist + right_dist, left_dist + 2 * right_dist)
-    # dist = 2 * left_dist + right_dist
     if dist <= l and city_count > answer:
         answer = city_count
     if dist > l:
@@ -22,19 +21,4 @@ while left <= s and right <= n:
         right += 1
         right_dist = sum(a_list[s - 1 : right - 1])
 
-# left, right = 1, s
-# left_dist = sum(a_list[left - 1 : s - 1])
-# right_dist = sum(a_list[s - 1 : right - 1])
-#
-# while left <= s and right <= n:
-#     city_count = right - left + 1
-#     dist = left_dist + 2 * right_dist
-#     if dist <= l and city_count > answer:
-#         answer = city_count
-#     if dist > l:
-#         left += 1
-#         left_dist = sum(a_list[left - 1 : s - 1])
-#     else:
-#         right += 1
-#         right_dist = sum(a_list[s - 1 : right - 1])
 print(answer)
