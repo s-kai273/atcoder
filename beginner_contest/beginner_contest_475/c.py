@@ -15,10 +15,10 @@ while left <= s and right <= n:
     if dist <= l and city_count > answer:
         answer = city_count
     if dist > l:
+        left_dist -= a_list[left - 1]
         left += 1
-        left_dist = sum(a_list[left - 1 : s - 1])
     else:
+        right_dist += a_list[right - 1] if right < n else 0
         right += 1
-        right_dist = sum(a_list[s - 1 : right - 1])
 
 print(answer)
