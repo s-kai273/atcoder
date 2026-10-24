@@ -1,3 +1,7 @@
+import sys
+
+sys.setrecursionlimit(10**6)
+
 n, m, s, t = map(int, input().split())
 
 adj_list = [list() for _ in range(n + 1)]
