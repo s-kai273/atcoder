@@ -12,7 +12,7 @@ for _ in range(m):
     if t in s_dict:
         s_dict[t] += 1
     else:
-        candidate = None
+        candidate_list = list()
         for s in s_dict.keys():
             if len(t) != len(s):
                 continue
@@ -22,12 +22,9 @@ for _ in range(m):
                     diff_count += 1
                 if diff_count > 1:
                     break
-            if diff_count == 1 and candidate is None:
-                candidate = s
-            elif diff_count == 1 and candidate:
-                candidate = None
-                break
-        if candidate:
-            s_dict[candidate] += 1
+            if diff_count == 1:
+                candidate_list.append(s)
+        if len(candidate_list) == 1:
+            s_dict[candidate_list[0]] += 1
 for i in range(n):
     print(s_dict[s_list[i]])
