@@ -1,42 +1,24 @@
+import bisect
+
 h, w, n, q = map(int, input().split())
-col_count = [0] * h
-row_count = [0] * w
+r_list = list()
+c_list = list()
 
 for _ in range(n):
     r, c = map(int, input().split())
-    col_count[r - 1] += 1
-    row_count[c - 1] += 1
+    r_list.append(r)
+    c_list.append(c)
 
-col_sum_count = list()
-row_sum_count = list()
-
-col_sum = 0
-for i in range(h):
-    col_sum += col_count[i]
-    col_sum_count.append(col_sum)
-
-row_sum = 0
-for i in range(w):
-    row_sum += row_count[i]
-    row_sum_count.append(row_sum)
+r_list.sort()
+c_list.sort()
 
 for _ in range(q):
-    query_parts = list(map(int, input().split()))
-    answer = None
-    if query_parts[0] == 1:
-        u = query_parts[1]
-        d = query_parts[2]
-        answer = (
-            col_sum_count[d - 1] - col_sum_count[u - 2]
-            if u > 1
-            else col_sum_count[d - 1]
-        )
+    q_parts = list(map(int, input().split()))
+    if q_parts[0] == 1:
+        u = q_parts[1]
+        d = q_parts[2]
+        print(bisect.bisect_right(r_list, d) - bisect.bisect_left(r_list, u))
     else:
-        l = query_parts[1]
-        r = query_parts[2]
-        answer = (
-            row_sum_count[r - 1] - row_sum_count[l - 2]
-            if l > 1
-            else row_sum_count[r - 1]
-        )
-    print(answer)
+        l = q_parts[1]
+        r = q_parts[2]
+        print(bisect.bisect_right(c_list, r) - bisect.bisect_left(c_list, l))
