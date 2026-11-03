@@ -11,14 +11,14 @@ for _ in range(q):
         queue.append((c, x))
     else:
         k = q_parts[1]
-        sum = 0
-        while True:
+        total = 0
+        while k > 0:
             c, x = queue.popleft()
-            if k > c:
+            if k >= c:
                 k -= c
-                sum += c * x
+                total += c * x
             else:
-                sum += k * x
+                total += k * x
                 queue.appendleft((c - k, x))
                 break
-        print(sum)
+        print(total)
