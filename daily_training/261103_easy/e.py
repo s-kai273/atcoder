@@ -1,25 +1,12 @@
 n = int(input())
-a_list = [0] + list(map(int, input().split()))
+a_list = list(map(int, input().split()))
 
-answer = [""] * (n + 1)
-i_list = list()
-current = 1
+dp = [""] * n
 
-while True:
-    i_list.append(current)
-
-    if current == a_list[current]:
-        for i in i_list:
-            answer[i] = str(current)
-        prev = current
-        for i in range(i_list[0], n + 1):
-            if answer[i] == "":
-                current = i
-                break
-        i_list = list()
-        if current == prev:
-            break
+for i in range(n - 1, -1, -1):
+    if a_list[i] == i + 1:
+        dp[i] = str(i + 1)
     else:
-        current = a_list[current]
+        dp[i] = dp[a_list[i] - 1]
 
-print(" ".join(answer[1:]))
+print(" ".join(dp))
