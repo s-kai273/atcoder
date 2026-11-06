@@ -1,17 +1,11 @@
 h, w, x, y = map(int, input().split())
-s_list = list()
-
-for _ in range(h):
-    s_list.append(list(input()))
-
+s_list = [list(input()) for _ in range(h)]
 t = input()
 
-house_count = 0
 visited = set()
 
 x -= 1
 y -= 1
-visited.add((x, y))
 
 d_dict = {
     "U": (-1, 0),
@@ -22,11 +16,14 @@ d_dict = {
 
 for ch in t:
     dx, dy = d_dict[ch]
-    if s_list[x + dx][y + dy] != "#":
-        if (x + dx, y + dy) not in visited:
-            visited.add((x + dx, y + dy))
-            house_count += 1 if s_list[x + dx][y + dy] == "@" else 0
-        x += dx
-        y += dy
+    nx, ny = x + dx, y + dy
+    if s_list[nx][ny] == "#":
+        continue
 
-print(f"{x + 1} {y + 1} {house_count}")
+    if s_list[nx][ny] == "@" and (nx, ny) not in visited:
+        visited.add((nx, ny))
+
+    x = nx
+    y = ny
+
+print(f"{x + 1} {y + 1} {len(visited)}")
