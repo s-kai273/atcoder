@@ -13,26 +13,20 @@ x -= 1
 y -= 1
 visited.add((x, y))
 
+d_dict = {
+    "U": (-1, 0),
+    "D": (1, 0),
+    "L": (0, -1),
+    "R": (0, 1),
+}
+
 for ch in t:
-    if ch == "U" and s_list[x - 1][y] != "#":
-        if (x - 1, y) not in visited:
-            visited.add((x - 1, y))
-            house_count += 1 if s_list[x - 1][y] == "@" else 0
-        x -= 1
-    elif ch == "D" and s_list[x + 1][y] != "#":
-        if (x + 1, y) not in visited:
-            visited.add((x + 1, y))
-            house_count += 1 if s_list[x + 1][y] == "@" else 0
-        x += 1
-    elif ch == "L" and s_list[x][y - 1] != "#":
-        if (x, y - 1) not in visited:
-            visited.add((x, y - 1))
-            house_count += 1 if s_list[x][y - 1] == "@" else 0
-        y -= 1
-    elif ch == "R" and s_list[x][y + 1] != "#":
-        if (x, y + 1) not in visited:
-            visited.add((x, y + 1))
-            house_count += 1 if s_list[x][y + 1] == "@" else 0
-        y += 1
+    dx, dy = d_dict[ch]
+    if s_list[x + dx][y + dy] != "#":
+        if (x + dx, y + dy) not in visited:
+            visited.add((x + dx, y + dy))
+            house_count += 1 if s_list[x + dx][y + dy] == "@" else 0
+        x += dx
+        y += dy
 
 print(f"{x + 1} {y + 1} {house_count}")
