@@ -18,6 +18,7 @@ while heap:
         continue
     w_list[v] = w
     for nv, nb in graph[v]:
-        heapq.heappush(heap, (w + nb + a_list[nv], nv))
+        if w_list[nv] == -1:
+            heapq.heappush(heap, (w + nb + a_list[nv], nv))
 
 print(*w_list[1:])
