@@ -1,11 +1,10 @@
 import heapq
 
 q = int(input())
-q_list = [tuple(map(int, input().split())) for _ in range(q)]
 heap = list()
 
 for i in range(q):
-    cmd, h = q_list[i]
+    cmd, h = map(int, input().split())
     if cmd == 1:
         heapq.heappush(heap, h)
     else:
