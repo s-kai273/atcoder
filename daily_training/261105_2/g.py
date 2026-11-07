@@ -8,14 +8,13 @@ def dfs(arr: list[int]):
         return
 
     start = 1 if len(arr) == 0 else arr[-1] + 10
+    r = n - len(arr) - 1
+    end = m - 10 * r
 
-    for i in range(start, m + 1):
-        prev_len = len(a_list)
+    for i in range(start, end + 1):
         arr.append(i)
         dfs(arr)
         arr.pop()
-        if prev_len == len(a_list):
-            break
 
 
 dfs([])
