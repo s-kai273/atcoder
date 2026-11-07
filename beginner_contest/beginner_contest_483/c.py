@@ -18,9 +18,9 @@ for k in range(1, n + 1):
     max_i = vote_keys[0][1] if k != vote_keys[0][1] else vote_keys[1][1]
     max_vote = vote_keys[0][0] if k != vote_keys[0][1] else vote_keys[1][0]
     if k in vote_pair_dict.keys():
-        for b in sorted(vote_pair_dict[k].keys()):
+        for b in vote_pair_dict[k].keys():
             cur_count = vote_count[b] + vote_pair_dict[k][b]
-            if max_vote < cur_count:
+            if (max_vote, -max_i) < (cur_count, -b):
                 max_i = b
                 max_vote = cur_count
     print(max_i)
