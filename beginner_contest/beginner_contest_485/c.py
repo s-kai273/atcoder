@@ -15,10 +15,7 @@ for i in range(1, n):
         dist_list.append(dist)
 
     if queue:
-        if queue[0][2] == float("inf"):
-            queue.append((i, c, float("inf")))
-        else:
-            queue.append((i, c, queue[-1][2] + 1))
+        queue.append((i, c, queue[-1][2] + 1))
     else:
         queue.append((i, c, 1))
 
